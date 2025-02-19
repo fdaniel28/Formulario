@@ -1,0 +1,14 @@
+function mostrar_resultados_encuesta() {
+    global $wpdb;
+    $tabla = $wpdb->prefix . "encuestas";
+    $resultados = $wpdb->get_results("SELECT * FROM $tabla");
+
+    echo "<h2>Resultados de la Encuesta</h2>";
+    echo "<table border='1'><tr><th>Satisfacción</th><th>Comentario</th><th>Fecha</th></tr>";
+    foreach ($resultados as $fila) {
+        echo "<tr><td>{$fila->satisfaccion}</td><td>{$fila->mejora}</td><td>{$fila->fecha}</td></tr>";
+    }
+    echo "</table>";
+}
+
+add_shortcode('resultados_encuesta', 'mostrar_resultados_encuesta');
