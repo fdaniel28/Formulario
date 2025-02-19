@@ -1,0 +1,5 @@
+1. Agregar el Formulario en tu Página. Edita tu página en WordPress y cambia a la vista HTML (Editor de Código). Luego, agrega el siguiente código:
+2. Crear la Función PHP para Guardar los Datos
+Abre el archivo functions.php de tu tema y agrega el siguiente código:
+3. Crear la Tabla en la Base de Datos
+Si aún no tienes una tabla para almacenar los resultados, agrégala ejecutando este código en el archivo functions.php o en phpMyAdmin:
