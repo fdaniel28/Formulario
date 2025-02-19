@@ -1,0 +1,36 @@
+<form id="encuestaForm" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
+    <input type="hidden" name="action" value="guardar_encuesta">
+    
+    <label>¿Qué tan satisfecho estás con nuestro servicio?</label><br>
+    <input type="radio" name="satisfaccion" value="Muy Satisfecho" required> Muy Satisfecho <br>
+    <input type="radio" name="satisfaccion" value="Satisfecho"> Satisfecho <br>
+    <input type="radio" name="satisfaccion" value="Neutral"> Neutral <br>
+    <input type="radio" name="satisfaccion" value="Insatisfecho"> Insatisfecho <br>
+    <input type="radio" name="satisfaccion" value="Muy Insatisfecho"> Muy Insatisfecho <br>
+
+    <label>¿Cómo podemos mejorar?</label><br>
+    <textarea name="mejora" rows="4" cols="50" required></textarea><br>
+
+    <button type="submit">Enviar Encuesta</button>
+</form>
+
+<div id="mensaje"></div>
+
+<script>
+document.getElementById("encuestaForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    let formData = new FormData(this);
+
+    fetch("<?php echo esc_url(admin_url('admin-post.php')); ?>", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("mensaje").innerHTML = "<p>Gracias por tu respuesta.</p>";
+        document.getElementById("encuestaForm").reset();
+    })
+    .catch(error => console.error('Error:', error));
+});
+</script>
